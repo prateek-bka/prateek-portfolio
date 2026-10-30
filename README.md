@@ -21,9 +21,7 @@ npm run dev
 
 ## Deploy
 
-Pushing to `main` runs `.github/workflows/deploy.yml`: lint and typecheck, then an SSH call to the VM. The deploy key can only run `deploy/deploy.sh` (installed on the server as `/srv/projects/prateek-portfolio/deploy.sh`), which checks out the commit, builds the Docker image and restarts the container behind Caddy.
-
-Secrets (Gmail app password for the contact form) live only in the server's `.env`.
+Pushing to `main` lints, type-checks and deploys via GitHub Actions. Secrets live only on the server.
 
 ## Credits
 
