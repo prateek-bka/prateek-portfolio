@@ -1,6 +1,5 @@
 name: Deploy
 
-# Every push to main rebuilds prateekagrawal.com on tara (ARM64 Oracle VM).
 on:
   push:
     branches: [main]
@@ -25,7 +24,7 @@ jobs:
           npx next typegen
           npx eslint src
           npx tsc --noEmit
-      - name: Build and restart on tara
+      - name: Deploy
         run: |
           install -m 600 /dev/null key && echo "${{ secrets.DEPLOY_SSH_KEY }}" > key
-          ssh -i key -o StrictHostKeyChecking=accept-new ubuntu@${{ secrets.TARA_VM_IP }} "${{ github.sha }}"
+          ssh -i key -o StrictHostKeyChecking=accept-new "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "${{ github.sha }}"
