@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
-// Emails contact-form messages via Gmail SMTP. Env (tara .env only):
-// GMAIL_USER, GMAIL_APP_PASSWORD, CONTACT_TO (defaults to GMAIL_USER).
+// Emails contact-form messages via Gmail SMTP.
+// Env: GMAIL_USER, GMAIL_APP_PASSWORD, CONTACT_TO (defaults to GMAIL_USER).
 
 const hits = new Map<string, number[]>();
 const WINDOW_MS = 60 * 60 * 1000;
@@ -10,7 +10,8 @@ const MAX_PER_WINDOW = 5;
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  const ip =
+    req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
   const now = Date.now();
   const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
   if (recent.length >= MAX_PER_WINDOW) {
