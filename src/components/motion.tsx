@@ -19,8 +19,8 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y, filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={reduce ? false : { opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
     >
@@ -54,7 +54,7 @@ export function TypingRoles({ roles }: { roles: string[] }) {
 
   return (
     <span aria-label={roles.join(", ")}>
-      <span aria-hidden className="text-gradient animate-gradient">{text}</span>
+      <span aria-hidden className="text-gradient">{text}</span>
       <span aria-hidden className="ml-0.5 inline-block w-[3px] animate-pulse bg-brand-2 align-middle" style={{ height: "0.9em" }} />
     </span>
   );

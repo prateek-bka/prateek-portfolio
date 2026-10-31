@@ -36,7 +36,7 @@ export function Hero() {
           <Reveal delay={0.08}>
             <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
               {hero.greeting.replace("Prateek", "")}
-              <span className="text-gradient animate-gradient">Prateek</span>
+              <span className="text-gradient">Prateek</span>
               <span className="sr-only"> Agrawal — {site.role}</span>
             </h1>
           </Reveal>
@@ -108,8 +108,12 @@ function CodeCard() {
   const s = "text-emerald-500 dark:text-emerald-300";
   const p = "text-brand-3";
   return (
-    <div className="animate-float relative">
-      <div className="bg-brand-gradient absolute -inset-4 rounded-[2rem] opacity-30 blur-2xl" aria-hidden />
+    <div className="relative">
+      <div
+        aria-hidden
+        className="absolute -inset-8 rounded-[3rem]"
+        style={{ background: "radial-gradient(ellipse at center, color-mix(in oklab, var(--brand-1) 35%, transparent), transparent 70%)" }}
+      />
       <div className="glow-border relative rounded-3xl before:rounded-3xl before:opacity-100">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-popover/90 shadow-2xl backdrop-blur-xl">
           <div className="flex items-center gap-2 border-b border-border px-5 py-3.5">
