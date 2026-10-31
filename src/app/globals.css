@@ -7,7 +7,7 @@
   --radius: 0.9rem;
   --background: oklch(0.985 0.004 286);
   --foreground: oklch(0.2 0.03 285);
-  --card: oklch(1 0 0 / 0.75);
+  --card: oklch(1 0 0 / 0.92);
   --card-foreground: var(--foreground);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--foreground);
@@ -33,7 +33,7 @@
 .dark {
   --background: oklch(0.13 0.025 285);
   --foreground: oklch(0.96 0.01 286);
-  --card: oklch(0.19 0.03 285 / 0.6);
+  --card: oklch(0.18 0.03 285 / 0.88);
   --card-foreground: var(--foreground);
   --popover: oklch(0.17 0.03 285);
   --popover-foreground: var(--foreground);
@@ -137,8 +137,13 @@
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
   }
+  /* Solid cards: backdrop blur on every card was the main cause of scroll lag. */
   .glass {
-    @apply bg-card backdrop-blur-xl border border-border;
+    @apply bg-card border border-border;
+  }
+  /* Only the sticky header keeps a (light) frosted blur. */
+  .glass-nav {
+    @apply bg-card/80 backdrop-blur-md border border-border;
   }
   /* Animated gradient ring around a card — pair with a relative parent. */
   .glow-border {
@@ -155,11 +160,11 @@
     background-size: 200% auto;
     opacity: 0;
     transition: opacity 0.4s;
-    animation: gradient 6s linear infinite;
   }
   .glow-border:hover::before,
   .glow-border:focus-within::before {
     opacity: 1;
+    animation: gradient 6s linear infinite;
   }
 }
 

@@ -25,7 +25,7 @@ export function SiteHeader() {
       <div
         className={cn(
           "mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full px-3 pl-4 transition-all duration-500",
-          scrolled || open ? "glass shadow-lg shadow-black/5" : "border border-transparent",
+          scrolled || open ? "glass-nav shadow-lg shadow-black/5" : "border border-transparent",
         )}
       >
         <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} — home`}>
@@ -67,7 +67,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="glass mx-auto mt-2 max-w-6xl rounded-3xl p-2 shadow-xl lg:hidden" aria-label="Mobile">
+        <nav className="glass-nav mx-auto mt-2 max-w-6xl rounded-3xl p-2 shadow-xl lg:hidden" aria-label="Mobile">
           {nav.map((n) => (
             <Link
               key={n.href}

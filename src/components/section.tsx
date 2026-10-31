@@ -28,21 +28,21 @@ export function Section({
   );
 }
 
+// Static radial gradients instead of animated blur filters: same glow, but the
+// browser paints it once instead of re-blurring huge layers every frame.
 export function Aurora({ className }: { className?: string }) {
   return (
     <div aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
       <div className="bg-grid absolute inset-0 opacity-60" />
       <div
-        className="animate-aurora absolute -top-1/3 left-[-10%] h-[70vh] w-[70vw] rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, var(--brand-1), transparent 65%)", opacity: "var(--glow)" }}
-      />
-      <div
-        className="animate-aurora absolute top-[10%] right-[-15%] h-[60vh] w-[60vw] rounded-full blur-3xl [animation-delay:-6s]"
-        style={{ background: "radial-gradient(circle, var(--brand-3), transparent 65%)", opacity: "var(--glow)" }}
-      />
-      <div
-        className="animate-aurora absolute bottom-[-30%] left-[25%] h-[55vh] w-[50vw] rounded-full blur-3xl [animation-delay:-12s]"
-        style={{ background: "radial-gradient(circle, var(--brand-2), transparent 65%)", opacity: "calc(var(--glow) * 0.8)" }}
+        className="absolute inset-0"
+        style={{
+          background: [
+            "radial-gradient(ellipse 55% 45% at 15% 10%, color-mix(in oklab, var(--brand-1) calc(var(--glow) * 70%), transparent), transparent 70%)",
+            "radial-gradient(ellipse 50% 45% at 90% 25%, color-mix(in oklab, var(--brand-3) calc(var(--glow) * 60%), transparent), transparent 70%)",
+            "radial-gradient(ellipse 45% 40% at 50% 100%, color-mix(in oklab, var(--brand-2) calc(var(--glow) * 50%), transparent), transparent 70%)",
+          ].join(", "),
+        }}
       />
     </div>
   );
