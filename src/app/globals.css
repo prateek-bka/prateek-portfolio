@@ -191,3 +191,8 @@
 .prose-post pre { @apply my-6 overflow-x-auto rounded-xl border border-border bg-muted p-4 text-sm; }
 .prose-post pre code { @apply bg-transparent p-0; }
 .prose-post blockquote { @apply my-6 border-l-2 border-primary pl-4 italic text-muted-foreground; }
+.prose-post table { @apply w-full border-collapse text-sm; }
+.prose-post th { @apply bg-muted px-4 py-2.5 text-left font-semibold text-foreground; }
+.prose-post td { @apply border-t border-border px-4 py-2.5 align-top; }
+.prose-post strong { @apply font-semibold text-foreground; }
+.prose-post hr { @apply my-10 border-border; }
