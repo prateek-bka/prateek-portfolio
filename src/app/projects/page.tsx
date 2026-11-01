@@ -4,6 +4,8 @@ import { PageHeader } from "@/components/page-header";
 import { ProjectCard } from "@/components/home/sections";
 import { Reveal } from "@/components/motion";
 import { JsonLd } from "@/components/json-ld";
+import { FaGithub } from "react-icons/fa6";
+import { getBuilds } from "@/lib/builds";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -11,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/projects" },
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const builds = await getBuilds();
   return (
     <>
       <PageHeader
@@ -30,6 +33,26 @@ export default function ProjectsPage() {
           </Reveal>
         ))}
       </div>
+      {builds.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+          <h2 className="mb-2 font-display text-2xl font-semibold">Recent builds</h2>
+          <p className="mb-6 text-muted-foreground">Hands-on projects from my AI engineering practice, with the code.</p>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {builds.map((b) => (
+              <article key={b.id} className="glass flex flex-col rounded-3xl p-6">
+                <p className="text-xs text-muted-foreground">{b.area}</p>
+                <h3 className="mt-2 font-display text-lg font-semibold leading-snug">{b.title.split(" — ")[0]}</h3>
+                <p className="mt-2 flex-1 text-sm text-muted-foreground">{b.blurb}</p>
+                {b.repoUrl && (
+                  <a href={b.repoUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
+                    <FaGithub className="size-4" /> View the code
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
       <JsonLd
         data={{
           "@type": "ItemList",
