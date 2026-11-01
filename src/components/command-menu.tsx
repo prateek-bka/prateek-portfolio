@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Command } from "cmdk";
-import { Command as CommandIcon, Copy, FileText, FolderGit2, Home, Mail, Moon, PenLine, Search, User } from "lucide-react";
+import { Command as CommandIcon, Copy, FileText, FolderGit2, Home, Mail, Moon, PenLine, Radio, Search, User } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { site, socials, projects } from "@/portfolio";
 
@@ -61,6 +61,7 @@ export function CommandMenu() {
           <Command.Item className={item} onSelect={() => run(() => router.push("/#about"))}><User />About</Command.Item>
           <Command.Item className={item} onSelect={() => run(() => router.push("/projects"))}><FolderGit2 />Projects</Command.Item>
           <Command.Item className={item} onSelect={() => run(() => router.push("/blog"))}><PenLine />Blog</Command.Item>
+          <Command.Item className={item} onSelect={() => run(() => router.push("/wire"))}><Radio />Wire</Command.Item>
           <Command.Item className={item} onSelect={() => run(() => router.push("/resume"))}><FileText />Resume</Command.Item>
           <Command.Item className={item} onSelect={() => run(() => router.push("/#contact"))}><Mail />Contact</Command.Item>
         </Command.Group>

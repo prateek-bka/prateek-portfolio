@@ -337,6 +337,7 @@ export const nav = [
   { label: "Work", href: "/#experience" },
   { label: "Projects", href: "/projects" },
   { label: "Blog", href: "/blog" },
+  { label: "Wire", href: "/wire" },
   { label: "Resume", href: "/resume" },
   { label: "Contact", href: "/#contact" },
 ];
