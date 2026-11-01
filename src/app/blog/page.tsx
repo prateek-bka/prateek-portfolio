@@ -38,6 +38,10 @@ export default async function BlogPage() {
               <Reveal key={p.slug} delay={i * 0.05}>
                 <SpotlightCard>
                   <Link href={`/blog/${p.slug}`} className="block p-7">
+                    {p.cover && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.cover} alt={p.coverAlt ?? ""} loading="lazy" className="mb-5 aspect-[1.91/1] w-full rounded-2xl object-cover" />
+                    )}
                     <div className="flex items-center gap-3 text-xs text-muted-foreground">
                       <time dateTime={p.date}>{formatDate(p.date)}</time>·<span>{p.readingMinutes} min read</span>
                       {p.draft && <Badge>draft</Badge>}
