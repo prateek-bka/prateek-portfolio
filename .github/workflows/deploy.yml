@@ -3,7 +3,13 @@ name: Deploy
 on:
   push:
     branches: [main]
+  # Run by hand with an older commit to roll back; a commit whose image is
+  # still on the server (last 3) goes live in seconds.
   workflow_dispatch:
+    inputs:
+      ref:
+        description: "Commit to deploy (blank = latest main)"
+        required: false
 
 concurrency:
   group: deploy
@@ -14,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -27,4 +35,5 @@ jobs:
       - name: Deploy
         run: |
           install -m 600 /dev/null key && echo "${{ secrets.DEPLOY_SSH_KEY }}" > key
-          ssh -i key -o StrictHostKeyChecking=accept-new "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "${{ github.sha }}"
+          ssh -i key -o StrictHostKeyChecking=accept-new "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}" "${{ inputs.ref || github.sha }}"
+          rm -f key
