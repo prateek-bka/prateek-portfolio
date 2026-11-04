@@ -83,14 +83,16 @@ async function Post({ params }: { params: PageProps<"/blog/[slug]">["params"] })
           ))}
         </div>
       </PageHeader>
-      <article className="prose-post mx-auto max-w-3xl px-4 pb-16 sm:px-6">
-        {p.cover && (
-          // eslint-disable-next-line @next/next/no-img-element
+      {p.cover && (
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={p.cover} alt={p.coverAlt ?? ""} className="mb-10 w-full rounded-3xl border border-border" fetchPriority="high" />
-        )}
+        </div>
+      )}
+      <article className="prose-post mx-auto max-w-4xl px-4 pb-16 sm:px-6">
         {p.format === "mdx" ? <MDXRemote source={p.content} /> : <MarkdownArticle source={p.content} />}
       </article>
-      <div className="mx-auto max-w-3xl px-4 pb-24 sm:px-6">
+      <div className="mx-auto max-w-4xl px-4 pb-24 sm:px-6">
         <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-primary hover:underline">
           <ArrowLeft className="size-4" /> All posts
         </Link>
